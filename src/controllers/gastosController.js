@@ -22,9 +22,7 @@ const createExpense = async (req, res) => {
 
     const user = await User.findByPk(userId);
 
-    if (!user) {
-      return res.status(404).json({ message: "Usuario no encontrado" });
-    }
+  
 
     const gasto = await Expense.create({
       fecha: new Date(),
@@ -35,7 +33,7 @@ const createExpense = async (req, res) => {
       userId
     });
 
-    // 🔴 RESTAMOS el saldo
+  
     await User.decrement(
       { saldo: monto },
       { where: { id: userId } }
@@ -59,10 +57,6 @@ const updateExpense = async (req, res) => {
     const user = await User.findByPk(userId);
     const expense = await Expense.findByPk(id);
 
-    if (!user || !expense) {
-      return res.status(404).json({ message: "Usuario o gasto no encontrado" });
-    }
-
     const montoAnterior = expense.monto;
 
     await expense.update({
@@ -74,8 +68,6 @@ const updateExpense = async (req, res) => {
 
     const diferencia = monto - montoAnterior;
 
-    // 🔴 Si diferencia es positiva → resta más
-    // 🟢 Si diferencia es negativa → devuelve saldo
     await User.decrement(
       { saldo: diferencia },
       { where: { id: userId } }
@@ -98,9 +90,6 @@ const deleteExpense = async (req, res) => {
       where: { id, userId }
     });
 
-    if (!expense) {
-      return res.status(404).json({ message: "Gasto no encontrado" });
-    }
 
     await User.increment(
       { saldo: expense.monto },

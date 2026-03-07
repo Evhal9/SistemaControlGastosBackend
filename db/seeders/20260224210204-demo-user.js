@@ -11,7 +11,7 @@ module.exports = {
         apellido: 'Salerno',
         email: 'melany@gmail.com',
         password: '123456',
-        saldo: 450000,
+        saldo: 0,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -21,7 +21,7 @@ module.exports = {
         apellido: "Martinez",
         email: "lucas@gmail.com",
         password: "123456",
-        saldo: 320000,
+        saldo: 0,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -31,7 +31,7 @@ module.exports = {
         apellido: "Fernandez",
         email: "camila@gmail.com",
         password: "123456",
-        saldo: 150000,
+        saldo: 0,
         createdAt: new Date(),
         updatedAt: new Date()
       },

@@ -1,16 +1,19 @@
 const { Router } = require("express");
 const controller = require("../controllers/userController");
+const validateUser = require("../middlewares/userValidator");
+const checkUserExists = require("../middlewares/checkUserExistsValidator");
+
 
 const route = Router();
 
 route.get("/", controller.getUsers);
 
-route.get("/:id", controller.getUserById);
+route.get("/:id", checkUserExists, controller.getUserById);
 
-route.post("/", controller.createUser);
+route.post("/", validateUser, controller.createUser);
 
-route.delete("/:id", controller.deleteUser);
+route.delete("/:id", checkUserExists, controller.deleteUser);
 
-//route.put("/:id", controller.updateUser);
+
 
 module.exports = route;

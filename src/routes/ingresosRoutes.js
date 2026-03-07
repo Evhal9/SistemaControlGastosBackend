@@ -1,17 +1,18 @@
 const { Router } = require("express");
 const controller = require("../controllers/ingresosController");
-const {User, Income} = require ("../../db/models")
+const validateIncome = require("../middlewares/incomeValidator");
+const checkUserExists = require("../middlewares/checkUserExistsValidator");
+const checkIncomeOwnership = require("../middlewares/checkIncomeOwnership");
 
 const route = Router();
 
-route.get("/:userId", controller.getIncomesFromUser);
+route.get("/:userId",checkUserExists, controller.getIncomesFromUser);
 
-route.post("/:userId", controller.createIncome);
+route.post("/:userId", validateIncome, checkUserExists, controller.createIncome);
 
-route.delete("/:userId/:id", controller.deleteIncome);
+route.delete("/:userId/:id",checkUserExists, checkIncomeOwnership, controller.deleteIncome);
 
-route.put("/:userId/:id", controller.updateIncome);
+route.put("/:userId/:id", checkUserExists, checkIncomeOwnership, validateIncome, controller.updateIncome);
 
-route.get("/", controller.all);
 
 module.exports = route;

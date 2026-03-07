@@ -1,9 +1,5 @@
 const {User, Income} = require ("../../db/models")
 
-const all = async (req, res)=>{
-  const ingresos = await Income.findAll();
-  res.json(ingresos);
-}
 
 const getIncomesFromUser= async (req, res) => {
     try {
@@ -34,9 +30,7 @@ const createIncome = async (req, res) => {
         });
         const user = await User.findByPk(userId);
 
-        if (!user) {
-        return res.status(404).json({ message: "Usuario no encontrado" });
-        }
+        
 
         const nuevoSaldo = user.saldo + monto;
         await user.update({ saldo: nuevoSaldo });
@@ -61,9 +55,6 @@ const updateIncome = async (req, res) => {
     const user = await User.findByPk(userId);
     const income = await Income.findByPk(id);
 
-    if (!user || !income) {
-      return res.status(404).json({ message: "Usuario o ingreso no encontrado" });
-    }
 
 
     const montoAnterior = income.monto;
@@ -100,16 +91,9 @@ const deleteIncome = async (req, res) => {
       where: { id, userId }
     });
 
-    if (!ingreso) {
-      return res.status(404).json({ message: "Ingreso no encontrado" });
-    }
 
-    
     const user = await User.findByPk(userId);
 
-    if (!user) {
-      return res.status(404).json({ message: "Usuario no encontrado" });
-    }
 
     const nuevoSaldo = user.saldo - ingreso.monto;
     await user.update({ saldo: nuevoSaldo });
@@ -124,4 +108,4 @@ const deleteIncome = async (req, res) => {
 };
 
 
-module.exports = {getIncomesFromUser, createIncome, updateIncome , deleteIncome, all};
+module.exports = {getIncomesFromUser, createIncome, updateIncome , deleteIncome};
