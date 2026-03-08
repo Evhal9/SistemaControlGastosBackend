@@ -1,10 +1,15 @@
+
+const cors = require("cors");
 const express = require('express');
 const db = require('./db/models');
 const userRoutes = require ("./src/routes/userRoutes")
 const ingresosRoutes = require ("./src/routes/ingresosRoutes")
 const gastosRoutes = require ("./src/routes/gastosRoutes")
-
 const app = express();
+
+app.use(cors({
+  origin: "http://localhost:5173"
+}));
 app.use(express.json());
 
 

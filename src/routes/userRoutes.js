@@ -10,7 +10,7 @@ route.get("/", controller.getUsers);
 
 route.get("/:id", checkUserExists, controller.getUserById);
 
-route.post("/", validateUser, controller.createUser);
+route.post("/", controller.createUser);
 
 route.delete("/:id", checkUserExists, controller.deleteUser);
 

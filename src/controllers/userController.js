@@ -24,23 +24,32 @@ const getUserById= async (req, res) => {
 
 
 
-const createUser= async (req, res) => {
-    try {
-        const { nombre, apellido, email, password} = req.body
-        const user = User.create ({
-            nombre: nombre,
-            apellido: apellido,
-            email: email,
-            password: password
-        })
-        res.status(204).json("Nuevo usuario creado")
-    } catch (error) {
-        res.status(500).json("No se pudo crear el usuario", error)
+const createUser = async (req, res) => {
+  try {
+
+    const { nombre, password } = req.body;
+
+    if (!nombre || !password) {
+      return res.status(400).json({ error: "Nombre y password son obligatorios" });
     }
-    
 
-}
+    const user = await User.create({
+      nombre: nombre,
+      password: password,
+      monto: 0
+    });
 
+    res.status(201).json(user);
+
+  } catch (error) {
+
+    res.status(500).json({
+      error: "No se pudo crear el usuario",
+      details: error.message
+    });
+
+  }
+};
 
 const deleteUser = async (req, res) => {
     try {

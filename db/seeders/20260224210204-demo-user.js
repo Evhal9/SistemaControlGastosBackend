@@ -8,8 +8,6 @@ module.exports = {
     await queryInterface.bulkInsert('Users', [
       {
         nombre: 'Melany',
-        apellido: 'Salerno',
-        email: 'melany@gmail.com',
         password: '123456',
         saldo: 0,
         createdAt: new Date(),
@@ -18,8 +16,6 @@ module.exports = {
       {
         id: 2,
         nombre: "Lucas",
-        apellido: "Martinez",
-        email: "lucas@gmail.com",
         password: "123456",
         saldo: 0,
         createdAt: new Date(),
@@ -28,8 +24,6 @@ module.exports = {
       {
         id: 3,
         nombre: "Camila",
-        apellido: "Fernandez",
-        email: "camila@gmail.com",
         password: "123456",
         saldo: 0,
         createdAt: new Date(),
