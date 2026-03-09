@@ -4,8 +4,6 @@ const incomeSchema = Joi.object({
 
   descripcion: Joi.string().min(3).max(100).required(),
 
-  categoria: Joi.string().min(3).max(50).required(),
-
   metodo: Joi.string().valid("Efectivo", "Tarjeta", "Transferencia").required(),
 
   monto: Joi.number().positive().required(),

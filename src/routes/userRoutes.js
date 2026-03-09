@@ -10,6 +10,8 @@ route.get("/", controller.getUsers);
 
 route.get("/:id", checkUserExists, controller.getUserById);
 
+route.get("/:id/saldo", checkUserExists, controller.getSaldoByUser);
+
 route.post("/", controller.createUser);
 
 route.delete("/:id", checkUserExists, controller.deleteUser);

@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
   Income.init({
     fecha: DataTypes.DATE,
     descripcion: DataTypes.STRING,
-    categoria: DataTypes.STRING,
+
     metodo: DataTypes.STRING,
     monto: DataTypes.INTEGER,
     userId: {

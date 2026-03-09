@@ -1,7 +1,7 @@
 const { Router } = require("express");
 const controller = require("../controllers/ingresosController");
 const validateIncome = require("../middlewares/incomeValidator");
-const checkUserExists = require("../middlewares/checkUserExistsValidator");
+const checkUserExists = require("../middlewares/checkUserExist");
 const checkIncomeOwnership = require("../middlewares/checkIncomeOwnership");
 
 const route = Router();

@@ -23,6 +23,17 @@ const getUserById= async (req, res) => {
     }
 
 
+const getSaldoByUser= async (req, res) => {
+    try {
+        const id = req.params.id
+        const user = await User.findByPk(id);
+        console.log(user)
+        console.log(user.saldo)
+        res.status(200).json(user.saldo);
+    } catch (error) {
+        res.status(500).json("Usuario no encontrado", error)
+    }
+    }
 
 const createUser = async (req, res) => {
   try {
@@ -36,7 +47,7 @@ const createUser = async (req, res) => {
     const user = await User.create({
       nombre: nombre,
       password: password,
-      monto: 0
+      saldo: 0
     });
 
     res.status(201).json(user);
@@ -65,4 +76,4 @@ const deleteUser = async (req, res) => {
 }
 
 
-module.exports = { getUsers, getUserById, createUser, deleteUser};
+module.exports = { getUsers, getUserById, createUser, deleteUser, getSaldoByUser};

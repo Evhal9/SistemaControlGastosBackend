@@ -16,9 +16,6 @@ module.exports = {
       descripcion: {
         type: Sequelize.STRING
       },
-      categoria: {
-        type: Sequelize.STRING
-      },
       userId: {
         type: Sequelize.INTEGER,
         allowNull: false

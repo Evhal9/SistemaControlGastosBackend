@@ -2,9 +2,9 @@ const { User } = require("../../db/models");
 
 const checkUserExists = async (req, res, next) => {
   try {
-    const { id } = req.params;
+    const { userId } = req.params;
 
-    const user = await User.findByPk(id);
+    const user = await User.findByPk(userId);
 
     if (!user) {
       return res.status(404).json({
